@@ -3,7 +3,6 @@ import subprocess
 import time
 import re
 import threading
-import os
 
 app = Flask(__name__)
 
