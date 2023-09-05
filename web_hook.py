@@ -6,7 +6,6 @@ import threading
 import os
 
 app = Flask(__name__)
-os.environ['GOPROXY'] = 'https://goproxy.cn,direct'
 
 
 @app.route('/webhook', methods=['POST'])
