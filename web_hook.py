@@ -15,7 +15,7 @@ def webhook():
         commits = data['commits']
         for commit in commits:
             message = commit['message']
-            if re.search(r'Merge pull request', message):  # only MR request
+            if re.search(r'Merge pull request', message) or re.search(r'publish', message):  # only MR request
                 print(f"update {repository_name} at {time.time()}\n")
                 if repository_name == 'JA-FE':
                     thread = threading.Thread(target=handle_jafe)
