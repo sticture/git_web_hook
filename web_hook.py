@@ -17,23 +17,23 @@ def webhook():
             message = commit['message']
             if re.search(r'Merge pull request', message) or re.search(r'publish', message):  # only MR request
                 print(f"update {repository_name} at {time.time()}\n")
-                if repository_name == 'JA-FE':
+                if repository_name == 'JobGPT-Frontend':
                     thread = threading.Thread(target=handle_jafe)
                     thread.start()
-                if repository_name == 'JobAssistant':
+                if repository_name == 'JobGPT-Backend':
                     thread = threading.Thread(target=handle_jobassistant)
                     thread.start()
     return 'OK', 200
 
 
-def handle_jobassistant():
-    path = "/root/GoProject/JobAssistant"
-    subprocess.call(["sh", "/root/GoProject/JobAssistant/bootstrap.sh"], cwd=path)
+def handle_backend():
+    path = "/root/JobGPT-Backend"
+    subprocess.call(["sh", "/root/JobGPT-Backend/scripts/bootstrap.sh"], cwd=path)
 
 
-def handle_jafe():
-    path = "/root/JA-FE"
-    subprocess.call(["sh", "/root/JA-FE/bootstrap.sh"], cwd=path)
+def handle_frontend():
+    path = "/root/JobGPT-Frontend"
+    subprocess.call(["sh", "/root/JobGPT-Frontend/bootstrap.sh"], cwd=path)
 
 
 if __name__ == '__main__':
