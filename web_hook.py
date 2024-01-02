@@ -18,10 +18,10 @@ def webhook():
             if re.search(r'Merge pull request', message) or re.search(r'publish', message):  # only MR request
                 print(f"update {repository_name} at {time.time()}\n")
                 if repository_name == 'JobGPT-Frontend':
-                    thread = threading.Thread(target=handle_jafe)
+                    thread = threading.Thread(target=handle_frontend)
                     thread.start()
                 if repository_name == 'JobGPT-Backend':
-                    thread = threading.Thread(target=handle_jobassistant)
+                    thread = threading.Thread(target=handle_backend)
                     thread.start()
     return 'OK', 200
 
